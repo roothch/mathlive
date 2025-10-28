@@ -1710,6 +1710,9 @@ If you are using Vue, this may be because you are using the runtime-only build o
     this.blurred = true;
     this.ariaLiveText!.textContent = '';
 
+    // Commit any active LaTeX edits before comparing the value on blur.
+    if (getLatexGroup(this.model)) complete(this, 'accept');
+
     hideSuggestionPopover(this);
 
     if (this.model.getValue() !== this.valueOnFocus) {
